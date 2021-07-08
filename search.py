@@ -2,11 +2,22 @@ from googleapiclient.discovery import build
 from typing import Final
 import json
 
-KEY: Final[str] = (json.load(open(".token.json", "r")))["youtubeApiToken"]
+with open(".token.json", "r") as tokenFile:
+    KEY: Final[str] = (json.load(tokenFile))["youtubeApiToken"]
 HEADER: Final[str] = "https://www.youtube.com/watch?v="
 
-# return movie data list
 def get_movie_data(search_name, movie_num):
+    """
+    get data of movie in youtube in like json
+
+    Parameters
+    ----------
+    search_name : str
+        
+    movie_num : int
+        
+    """
+
     query: str = search_name
     movie_cnt: int = movie_num + 5
     youtube: resource = build("youtube","v3",developerKey=KEY)
@@ -33,7 +44,7 @@ def get_movie_data(search_name, movie_num):
 
     return response
 
-# return movie name
+# return single movie name
 def get_movie_name(search_name):
     response = get_movie_data(search_name, 1)
     
