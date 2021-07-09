@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-Get information of movie in youtube.
+Fetch information of movie in youtube.
 
 """
 import json
@@ -14,9 +14,9 @@ with open(".token.json", "r") as tokenFile:
 URL_HEADER: Final[str] = "https://www.youtube.com/watch?v="
 
 
-def get_video_data(search_name, video_num):
+def fetch_video_data(search_name, video_num):
     """
-    Get data of video in youtube
+    Fetch data of video in youtube
 
     This method is take information of videos in youtube with google
     youtube api. Other methods in this module, search module use this method.
@@ -60,9 +60,9 @@ def get_video_data(search_name, video_num):
 
     return response
 
-def get_video_name(search_name):
+def fetch_video_name(search_name):
     """
-    Get video title on youtube come on the top after searching.
+    Fetch video title on youtube come on the top after searching.
 
     Parameters
     ----------
@@ -74,15 +74,15 @@ def get_video_name(search_name):
     name : str
         Video title you want.
     """
-    response = get_video_data(search_name, 1)
+    response = fetch_video_data(search_name, 1)
 
     name = response["items"][0]["snippet"]["title"]
 
     return name
 
-def get_video_names(search_name, video_num):
+def fetch_video_names(search_name, video_num):
     """
-    Get a list of video title.
+    Fetch a list of video title.
 
     Parameters
     ----------
@@ -96,15 +96,15 @@ def get_video_names(search_name, video_num):
     names : list[str]
         List of video title.
     """
-    response = get_video_data(search_name, video_num)
+    response = fetch_video_data(search_name, video_num)
 
     names = [item["snippet"]["title"] for item in response["items"]]
 
     return names
 
-def get_video_url(search_name):
+def fetch_video_url(search_name):
     """
-    Get a url of video in youtube come on the top after searching.
+    Fetch a url of video in youtube come on the top after searching.
 
     Parameters
     ----------
@@ -115,6 +115,6 @@ def get_video_url(search_name):
     -------
     Video url.
     """
-    datas = get_video_data(search_name, 1)
+    datas = fetch_video_data(search_name, 1)
 
     return URL_HEADER + datas["items"][0]["id"]["videoId"]
