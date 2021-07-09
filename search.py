@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-Get information of movie in youtube
+Get information of movie in youtube.
 
 """
 import json
