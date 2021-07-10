@@ -7,7 +7,6 @@ import json
 from typing import Final
 from googleapiclient.discovery import build
 
-
 # youtube api token is read from other file ignored .gitignore
 with open(".token.json", "r") as tokenFile:
     YOUTUBE_API_TOKEN: Final[str] = (json.load(tokenFile))["youtubeApiToken"]
@@ -36,11 +35,11 @@ def fetch_video_data(search_name, video_num):
     """
     query: str = search_name
     video_cnt: int = video_num + 5
-    youtube: resource = build("youtube","v3",developerKey=YOUTUBE_API_TOKEN)
+    youtube: resource = build("youtube", "v3", developerKey=YOUTUBE_API_TOKEN)
     response = youtube.search().list(
-                q=query,
-                part="id,snippet",
-                maxResults = video_cnt
+        q=query,
+        part="id,snippet",
+        maxResults = video_cnt
     ).execute()
 
     i: int = 0
@@ -50,15 +49,16 @@ def fetch_video_data(search_name, video_num):
         except KeyError:
             response["items"].pop(i)
             continue
-        i+=1
+        i += 1
 
     while True:
         if len(response["items"]) > video_num:
-            response["items"].pop(len(response["items"])-1)
+            response["items"].pop(len(response["items"]) - 1)
         elif len(response["items"]) <= video_num:
             break
 
     return response
+
 
 def fetch_video_name(search_name):
     """
@@ -79,6 +79,7 @@ def fetch_video_name(search_name):
     name = response["items"][0]["snippet"]["title"]
 
     return name
+
 
 def fetch_video_names(search_name, video_num):
     """
@@ -101,6 +102,7 @@ def fetch_video_names(search_name, video_num):
     names = [item["snippet"]["title"] for item in response["items"]]
 
     return names
+
 
 def fetch_video_url(search_name):
     """

@@ -9,7 +9,7 @@ from googleapiclient.discovery import build
 
 
 # youtube api token is read from other file ignored .gitignore
-with open(".token.json", "r") as tokenFile:
+with open("./.token.json", "r") as tokenFile:
     YOUTUBE_API_TOKEN: Final[str] = (json.load(tokenFile))["youtubeApiToken"]
 URL_HEADER: Final[str] = "https://www.youtube.com/watch?v="
 
