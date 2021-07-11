@@ -1,3 +1,7 @@
-from hoge import hoge
+import settings
 
-print(hoge.hoge())
+settings.inves_home_path()
+
+import search
+
+print(search.fetch_video_name("ノンブレス"))
