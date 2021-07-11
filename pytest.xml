@@ -1,3 +1,1 @@
-<?xml version="1.0" encoding="utf-8"?><testsuites><testsuite name="pytest" errors="1" failures="0" skipped="0" tests="1" time="1.048" timestamp="2021-07-11T13:28:04.219835" hostname="fHl.local"><testcase classname="" name="tests.search_test" time="0.000"><error message="collection failure">tests/search_test.py:12: in &lt;module&gt;
-    with open("./.token.json", "r") as tokenFile:
-E   FileNotFoundError: [Errno 2] No such file or directory: './.token.json'</error></testcase></testsuite></testsuites>
+<?xml version="1.0" encoding="utf-8"?><testsuites><testsuite name="pytest" errors="0" failures="0" skipped="0" tests="0" time="0.980" timestamp="2021-07-12T00:04:48.682264" hostname="fHl.local" /></testsuites>

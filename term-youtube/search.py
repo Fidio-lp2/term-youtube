@@ -3,7 +3,6 @@
 Fetch information of movie in youtube.
 
 """
-import os
 import json
 from typing import Final
 from googleapiclient.discovery import build

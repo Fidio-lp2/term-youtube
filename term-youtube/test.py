@@ -2,7 +2,7 @@ import pafy
 import vlc
 
 
-player = vlc.MediaListPlayer()
+player = vlc.MediaPlayer()
 urls = ["https://www.youtube.com/watch?v=vNuN8xH3X74", "https://www.youtube.com/watch?v=4IkLEmswL30"]
 videos = [pafy.new(url) for url in urls]
 bests = [video.getbestaudio() for video in videos]
