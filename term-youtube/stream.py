@@ -3,19 +3,33 @@
 Stream audio only with pafy and vlc from YouTube.
 
 """
+from typing import Callable
 import vlc
 import pafy
 
 
 class MusicStreamer:
+    """
+    The Wrapper of pafy and python-vlc with audio only.
 
-    mediaList: vlc.MediaList
+    Attributes
+    ----------
+    media_list : vlc.MediaList
+        Python-vlc's class that store song.
+    player : vlc.MediaListPlayer
+        Python-vlc's class that stream songs mainly.
+    """
+
+    media_list: vlc.MediaList
     player: vlc.MediaListPlayer
 
     def __init__(self):
-        self.mediaList = vlc.MediaList()
+        """
+        Constructor.
+        """
+        self.media_list = vlc.MediaList()
         self.player = vlc.MediaListPlayer()
-        self.player.set_media_list(self.mediaList)
+        self.player.set_media_list(self.media_list)
 
     # wrapper methods
     def play(self):
@@ -56,4 +70,10 @@ class MusicStreamer:
         bests = [video.getbestaudio() for video in videos]
         playurls = [best.url for best in bests]
         for mrl in playurls:
-            self.mediaList.add_media(mrl)
+            self.media_list.add_media(mrl)
+
+    def stream(self):
+        key: str
+        
+        while True:
+            key = input()

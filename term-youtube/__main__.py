@@ -36,5 +36,6 @@ def main():
         elif key == "stop":
             player.stop()
 
+
 if __name__ == "__main__":
     main()
