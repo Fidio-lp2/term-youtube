@@ -41,7 +41,7 @@ def fetch_video_data(search_name, video_num):
     response = youtube.search().list(
         q=query,
         part="id,snippet",
-        maxResults = video_cnt
+        maxResults=video_cnt
     ).execute()
 
     i: int = 0
