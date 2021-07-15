@@ -1,0 +1,18 @@
+Traceback (most recent call last):
+  File "/Users/fidio/Dev/term-youtube/term-youtube/__main__.py", line 54, in <module>
+    main()
+  File "/Users/fidio/Dev/term-youtube/term-youtube/__main__.py", line 22, in main
+    player.add_song("https://www.youtube.com/watch?v=bWo982dwTLI")
+  File "/Users/fidio/Dev/term-youtube/term-youtube/stream.py", line 72, in add_song
+    videos = [pafy.new(url) for url in urls]
+  File "/Users/fidio/Dev/term-youtube/term-youtube/stream.py", line 72, in <listcomp>
+    videos = [pafy.new(url) for url in urls]
+  File "/Users/fidio/.pyenv/versions/3.9.0/lib/python3.9/site-packages/pafy/pafy.py", line 124, in new
+    return Pafy(url, basic, gdata, size, callback, ydl_opts=ydl_opts)
+  File "/Users/fidio/.pyenv/versions/3.9.0/lib/python3.9/site-packages/pafy/backend_youtube_dl.py", line 31, in __init__
+    super(YtdlPafy, self).__init__(*args, **kwargs)
+  File "/Users/fidio/.pyenv/versions/3.9.0/lib/python3.9/site-packages/pafy/backend_shared.py", line 97, in __init__
+    self._fetch_basic()
+  File "/Users/fidio/.pyenv/versions/3.9.0/lib/python3.9/site-packages/pafy/backend_youtube_dl.py", line 53, in _fetch_basic
+    self._likes = self._ydl_info['like_count']
+KeyError: 'like_count'

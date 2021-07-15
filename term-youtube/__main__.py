@@ -3,16 +3,24 @@
 Main script...!
 
 """
+import sys
 from search import *
 from stream import *
 
 
 def main():
+    """
+    Main script!!!
+    """
+    # sys.stderr = open("out.log", "w")
+
     player = MusicStreamer()
 
-    player.add_song("https://www.youtube.com/watch?v=WeH2nuoQcYk")
-    player.add_song("https://youtu.be/aCxOn3Pfljg")
+    player.add_song("https://www.youtube.com/watch?v=tE8nzUQ_q_Y")
+    player.add_song("https://www.youtube.com/watch?v=ZM7brmvzumE")
     player.add_song("https://www.youtube.com/watch?v=5PTrZp5JJjk")
+    player.add_song("https://www.youtube.com/watch?v=bWo982dwTLI")
+    player.add_song("https://www.youtube.com/watch?v=n0sWvKrEYT8")
 
     player.play()
 
@@ -27,7 +35,7 @@ def main():
         elif key == "next":
             player.next()
 
-        elif key == "brevious":
+        elif key == "previous":
             player.previous()
 
         elif key == "start":
@@ -35,6 +43,11 @@ def main():
 
         elif key == "stop":
             player.stop()
+
+        elif key == "exit":
+            break
+
+    # sys.stderr.close()
 
 
 if __name__ == "__main__":
