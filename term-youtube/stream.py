@@ -10,8 +10,6 @@ import pafy
 
 
 class MusicStreamer:
-    sys.stdout = open("out.log", "w")
-
     """
     The Wrapper of pafy and python-vlc with audio only.
 
@@ -44,6 +42,10 @@ class MusicStreamer:
     def stop(self):
         """
         Stop streaming.
+
+        If you used this method, streaming stop and
+        reset at the beginning of the song.
+        If you want to pause, you can use the pause() method.
         """
         self.player.stop()
 
@@ -61,19 +63,20 @@ class MusicStreamer:
 
     def pause(self):
         """
-        Pause streaming. (toggle)
+        Pause streaming. This method is toggle.
         """
         self.player.pause()
 
-    def add_song(self, *urls):
+    def add_songs(self, *urls):
         """
-        Add song.
+        Add songs.
+
+        Parameters
+        ----------
+        *urls : list[str]
+            List of the video urls in youtube.
         """
-        videos: list[pafy.InternPafy | pafy.YdtlPafy]
-        try:
-            videos = [pafy.new(url) for url in urls]
-        except KeyError:
-            pass
+        videos = [pafy.new(url) for url in urls]
         bests = [video.getbestaudio() for video in videos]
         playurls = [best.url for best in bests]
         for mrl in playurls:
