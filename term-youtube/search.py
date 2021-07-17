@@ -6,7 +6,7 @@ Fetch information of movie in youtube.
 import json
 from typing import Final
 from googleapiclient.discovery import build
-from .util import inves_app_path
+from util import inves_app_path
 
 # youtube api token is read from other file ignored .gitignore
 tokenpath: str = inves_app_path() + "/.token.json"
@@ -37,7 +37,7 @@ def fetch_video_data(search_name, video_num):
     """
     query: str = search_name
     video_cnt: int = video_num + 5
-    youtube: resource = build("youtube", "v3", developerKey=YOUTUBE_API_TOKEN)
+    youtube = build("youtube", "v3", developerKey=YOUTUBE_API_TOKEN)
     response = youtube.search().list(
         q=query,
         part="id,snippet",
