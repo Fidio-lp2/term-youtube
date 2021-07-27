@@ -3,8 +3,6 @@
 Stream audio only with pafy and vlc from YouTube.
 
 """
-import sys
-from typing import Callable
 import vlc
 import pafy
 

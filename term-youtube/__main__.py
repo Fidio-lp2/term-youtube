@@ -23,7 +23,7 @@ def search_video(key):
             if video_sub == "cancel":
                 print("Cancel!")
                 break
-            elif int(video_sub) < 10 and int(video_sub) > -1:
+            if int(video_sub) < 10 and int(video_sub) > -1:
                 break
             else:
                 print("Input 0~9 value... One more please!")
@@ -31,7 +31,7 @@ def search_video(key):
         if video_sub != "cancel":
             url = fetch_video_url(names_list[int(video_sub)])
             player.add_songs(url)
-            print(names_list[int(video_sub)] + "is added to playlist!")
+            print(names_list[int(video_sub)] + " is added to playlist!")
 
 
 
@@ -50,8 +50,6 @@ def main():
     """
     Main script!!!
     """
-    player.play()
-
     key: str
 
     while True:
@@ -90,7 +88,7 @@ def main():
         elif key == "previous":
             player.previous()
 
-        elif key == "start":
+        elif key == "play":
             player.play()
 
         elif key == "stop":
