@@ -4,9 +4,10 @@
 Main script...!
 
 """
+import daemon
 from search import (
         fetch_video_names,
-        fetch_video_url,
+        fetch_video_url
 )
 from stream import MusicStreamer
 
@@ -34,8 +35,7 @@ def search_video(key):
             print(names_list[int(video_sub)] + " is added to playlist!")
 
 
-
-_CALLBACKS = {
+CALLBACKS = {
     "search": search_video,
     "play": player.play,
     "stop": player.stop,
@@ -57,7 +57,7 @@ def main():
 
         # search settings
 
-        if key[:6] == "search":
+        if key[:9] == "ty search":
             names_list = fetch_video_names(key[7:], 10)
             for i in range(len(names_list)):
                 print(str(i) + " : " + names_list[i])
@@ -79,25 +79,25 @@ def main():
 
         # stream settings
 
-        elif key == "pause":
+        elif key == "ty pause":
             player.pause()
 
-        elif key == "next":
+        elif key == "ty next":
             player.next()
 
-        elif key == "previous":
+        elif key == "ty previous":
             player.previous()
 
-        elif key == "play":
+        elif key == "ty play":
             player.play()
 
-        elif key == "stop":
+        elif key == "ty stop":
             player.stop()
 
-        elif key[:3] == "add":
+        elif key[:3] == "ty add":
             player.add_songs(key[4:])
 
-        elif key == "exit":
+        elif key == "ty exit":
             break
 
 
