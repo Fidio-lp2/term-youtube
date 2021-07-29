@@ -13,14 +13,14 @@ class DisplayYoutube:
     interactive and intuitive with curses.
     """
 
-    def beginDrawing(self):
+    def begin_drawing(self):
         """
         Begin Drawing.
         """
-        curses.wrapper(mainLoop)
+        curses.wrapper(self.main_loop)
 
-    def mainLoop(self, stdscr):
+    def main_loop(self, stdscr):
         """
         Main loop function.
         """
-        print("hello")
+        pass
