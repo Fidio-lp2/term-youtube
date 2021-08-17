@@ -1,18 +1,10 @@
-#!/Users/fidio/.pyenv/shims/python
-# -*- coding:utf-8 -*-
-"""
-Main script...!
+# -*- coding: utf-8 -*-
 
-"""
+import sys
 import daemon
-from search import (
-        fetch_video_names,
-        fetch_video_url
-)
-from stream import MusicStreamer
+from .search import *
+from .stream import *
 
-
-player = MusicStreamer()
 
 def search_video(key):
     names_list = fetch_video_names(key[7:], 10)
@@ -34,22 +26,44 @@ def search_video(key):
             player.add_songs(url)
             print(names_list[int(video_sub)] + " is added to playlist!")
 
+def play_song():
+    pass
+
+def stop_song():
+    pass
+
+def pause_song():
+    pass
+
+def next_song():
+    pass
+
+def next_song():
+    pass
+
+def previous_song():
+    pass
+
+def add_songs():
+    pass
 
 CALLBACKS = {
     "search": search_video,
-    "play": player.play,
-    "stop": player.stop,
-    "pause": player.pause,
-    "next": player.next,
-    "previous": player.previous,
-    "add": player.add_songs
+    "play": play_song,
+    "stop": stop_song,
+    "pause": pause_song,
+    "next": next_song,
+    "previous": previous_song,
+    "add": add_songs
 }
 
 
-def main():
+def _real_main():
     """
     Main script!!!
     """
+    player = MusicStreamer
+
     key: str
 
     while True:
@@ -57,7 +71,7 @@ def main():
 
         # search settings
 
-        if key[:9] == "ty search":
+        if key[:6] == "search":
             names_list = fetch_video_names(key[7:], 10)
             for i in range(len(names_list)):
                 print(str(i) + " : " + names_list[i])
@@ -79,27 +93,25 @@ def main():
 
         # stream settings
 
-        elif key == "ty pause":
+        elif key == "pause":
             player.pause()
 
-        elif key == "ty next":
+        elif key == "next":
             player.next()
 
-        elif key == "ty previous":
+        elif key == "previous":
             player.previous()
 
-        elif key == "ty play":
+        elif key == "play":
             player.play()
 
-        elif key == "ty stop":
+        elif key == "stop":
             player.stop()
 
-        elif key[:3] == "ty add":
+        elif key[:3] == "add":
             player.add_songs(key[4:])
 
-        elif key == "ty exit":
-            break
-
-
-if __name__ == "__main__":
-    main()
+        elif key == "exit":
+ 
+def main():
+    _real_main()
