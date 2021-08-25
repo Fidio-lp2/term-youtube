@@ -21,6 +21,7 @@ class MusicStreamer:
 
     media_list: vlc.MediaList
     player: vlc.MediaListPlayer
+    my_videos = []
 
     def __init__(self):
         """
@@ -75,6 +76,7 @@ class MusicStreamer:
             List of the video urls in youtube.
         """
         videos = [pafy.new(url) for url in urls]
+        self.my_videos += videos
         bests = [video.getbestaudio() for video in videos]
         playurls = [best.url for best in bests]
         for mrl in playurls:

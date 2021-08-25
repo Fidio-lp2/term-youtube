@@ -95,7 +95,7 @@ class CommandLine():
                     continue
 
                 # enter
-                elif string.encode('utf-8') == b'\r':
+                elif string.encode('utf-8') == b'\n' or string.encode('utf-8') == b'\r':
                     break
 
                 sys.stdout.write(string)
