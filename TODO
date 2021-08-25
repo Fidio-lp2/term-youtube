@@ -70,3 +70,5 @@ daemonの問題ですが、daemon moduleに付属しているopen functionとclo
 
 インタラクティブモードとTUIモードの二つを使えるようにする！
 (まずは院タラクティブモードの実装を考える。)
+
+

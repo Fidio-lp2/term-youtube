@@ -3,6 +3,7 @@
 Create a pseudo command line.
 """
 
+import re
 import sys
 import termios
 # THE ULTIMATE SPECIAL MAGIC SPELL
@@ -13,8 +14,16 @@ class CommandLine():
     prompt: str
     cmdlog = []
 
+    __hiragana: re.Pattern
+    __katakana: re.Pattern
+    __kanji: re.Pattern
+
     def __init__(self, prompt: str = '>') -> None:
         self.prompt = prompt
+
+        self.__hiragana = re.compile('[\u3041-\u309F]+')
+        self.__katakana = re.compile('[\u30A0-\u30FF]+')
+        self.__kanji = re.compile('[\u4E00-\u9FFF]+')
 
     def commandline(self) -> str:
         sys.stdout.write(self.prompt + ' ')
@@ -64,12 +73,19 @@ class CommandLine():
             while True:
                 string = sys.stdin.read(1)
 
-                # delete
+                # delete operation
                 if string.encode('utf-8') == b'\x7f':
                     if len(input_str) != 0:
                         sys.stdout.write("\033[1D\033[K")
+                        pop_char = input_str.pop()
+
+                        if self.__hiragana.fullmatch(pop_char) or\
+                        self.__katakana.fullmatch(pop_char) or\
+                        self.__kanji.fullmatch(pop_char):
+                            sys.stdout.write("\033[1D")
+
                         sys.stdout.flush()
-                        input_str.pop()
+
                     continue
 
                 # up arrow and down arrow operation
@@ -94,7 +110,7 @@ class CommandLine():
                     sys.stdout.flush()
                     continue
 
-                # enter
+                # enter operation
                 elif string.encode('utf-8') == b'\n' or string.encode('utf-8') == b'\r':
                     break
 
