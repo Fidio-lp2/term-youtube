@@ -17,10 +17,12 @@ class CommandLine():
     __hiragana: re.Pattern
     __katakana: re.Pattern
     __kanji: re.Pattern
+    __sonota: re.Pattern
 
     def __init__(self, prompt: str = '>') -> None:
         self.prompt = prompt
 
+        self.__sonota = re.compile('[\u3000-\u3040]+')
         self.__hiragana = re.compile('[\u3041-\u309F]+')
         self.__katakana = re.compile('[\u30A0-\u30FF]+')
         self.__kanji = re.compile('[\u4E00-\u9FFF]+')
@@ -81,7 +83,8 @@ class CommandLine():
 
                         if self.__hiragana.fullmatch(pop_char) or\
                         self.__katakana.fullmatch(pop_char) or\
-                        self.__kanji.fullmatch(pop_char):
+                        self.__kanji.fullmatch(pop_char) or\
+                        self.__sonota.fullmatch(pop_char):
                             sys.stdout.write("\033[1D")
 
                         sys.stdout.flush()

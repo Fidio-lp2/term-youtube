@@ -41,6 +41,7 @@ RESET: Final[str] = '\033[0m'           # All reset
 def options(text: str, bold: bool, line: bool, \
             invisible: bool, reverce: bool) -> str:
     """
+    Other settings.
     """
     if bold:
         text = BOLD + text + RESET
