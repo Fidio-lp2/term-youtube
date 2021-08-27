@@ -2,13 +2,13 @@
 
 If you use this application, you can listen to YouTube music on **command line‼️*
 
-gazou
+![icon](icon.png)
 
 ## Dependency
 
 You should use after `python-3.9.0` version.
 
-And, set the environment variable "GOOGLE_YOUTUBE_API_TOKEN" to your "YouTube Data API". 
+And, set the environment variable `GOOGLE_YOUTUBE_API_TOKEN` to your "YouTube Data API". 
 
 ## Requirement
 module:
