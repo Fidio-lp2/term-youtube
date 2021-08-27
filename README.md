@@ -96,9 +96,9 @@ Open [playlist name]. `None` playlist is temporarily evacuated.
 
 Go back to `None` playlist.
 
-'save [name]'
+`save [name]`
 
-Save the current playlist as [name]. [name] is never used `None`. And, `None` playlist cannot be saved. And, this command cannnot be overwritten.
+Save the current playlist as [name]. `None` is never used as [name]. And, `None` playlist cannot be saved. And, this command cannnot be overwritten.
 
 `delete [name]`
 
@@ -132,3 +132,4 @@ and, create path to `bin/` directory in this repository.
 
 ## Author
 
+[this ikemen guy]("https://github.com/Fidio-lp2")
