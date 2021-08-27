@@ -9,7 +9,8 @@ import os.path
 from color import *
 
 
-def dis_message(message: str, terminal_column) -> None:
+def dis_message(message: str) -> None:
+    terminal_column = shutil.get_terminal_size().columns
     for i in range(int((terminal_column - len(message)) / 2)):
         print(' ', end='')
     print(green(message))
@@ -33,10 +34,10 @@ def inves_app_path():
     """
     return (os.path.dirname(__file__))[:-13]
 
-def welcome():
-    print(" _                                              _         _")
-    print("| |_ ___ _ __ _ __ ___        _   _  ___  _   _| |_ _   _| |__   ___")
-    print("| __/ _ \\ '__| '_ ` _ \\ _____| | | |/ _ \\| | | | __| | | | '_ \\ / _ \\")
-    print("| ||  __/ |  | | | | | |_____| |_| | (_) | |_| | |_| |_| | |_) |  __/")
-    print(" \__\___|_|  |_| |_| |_|      \__, |\___/ \__,_|\__|\__,_|_.__/ \___|")
-    print("                             |___/")
+# def welcome():
+#     print(" _                                              _         _")
+#     print("| |_ ___ _ __ _ __ ___        _   _  ___  _   _| |_ _   _| |__   ___")
+#     print("| __/ _ \\ '__| '_ ` _ \\ _____| | | |/ _ \\| | | | __| | | | '_ \\ / _ \\")
+#     print("| ||  __/ |  | | | | | |_____| |_| | (_) | |_| | |_| |_| | |_) |  __/")
+#     print(" \__\___|_|  |_| |_| |_|      \__, |\___/ \__,_|\__|\__,_|_.__/ \___|")
+#     print("                             |___/")

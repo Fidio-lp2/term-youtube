@@ -5,6 +5,7 @@ Stream audio only with pafy and vlc from YouTube.
 """
 import vlc
 import pafy
+import pafy.backend_youtube_dl
 
 
 class MusicStreamer:
@@ -19,19 +20,22 @@ class MusicStreamer:
         Python-vlc's class that stream songs mainly.
     """
 
-    media_list: vlc.MediaList
+    media_list: dict[str, vlc.MediaList] = {}
     player: vlc.MediaListPlayer
-    my_videos = []
+    video_datas: dict[str, list[pafy.backend_youtube_dl.YtdlPafy]] = {}
     play_mode: int
+    playlist_name: str
 
     def __init__(self):
         """
         Constructor.
         """
-        self.media_list = vlc.MediaList()
         self.player = vlc.MediaListPlayer()
-        self.player.set_media_list(self.media_list)
+        self.playlist_name = "None"
         self.play_mode = 0
+        self.media_list[self.playlist_name] = vlc.MediaList()
+        self.player.set_media_list(self.media_list[self.playlist_name])
+        self.video_datas[self.playlist_name] = []
 
     # wrapper methods
     def play(self):
@@ -86,6 +90,12 @@ class MusicStreamer:
         """
         return self.play_mode
 
+    def get_playlist_name(self):
+        """
+        Return the current playlist name.
+        """
+        return self.playlist_name
+
     def add_songs(self, *urls):
         """
         Add songs.
@@ -96,11 +106,11 @@ class MusicStreamer:
             List of the video urls in youtube.
         """
         videos = [pafy.new(url) for url in urls]
-        self.my_videos += videos
+        self.video_datas[self.playlist_name] += videos
         bests = [video.getbestaudio() for video in videos]
         playurls = [best.url for best in bests]
         for mrl in playurls:
-            self.media_list.add_media(mrl)
+            self.media_list[self.playlist_name].add_media(mrl)
 
     def remove_songs(self, movie_subs):
         """
@@ -115,10 +125,16 @@ class MusicStreamer:
         dicre_idx: int = 0
         for sub in movie_subs:
             sub -= dicre_idx
-            if sub > -1 and sub <= len(self.my_videos) - dicre_idx:
-                self.my_videos.pop(sub)
-                self.media_list.remove_index(sub)
+            if sub > -1 and sub <= len(self.video_datas[self.playlist_name]) - dicre_idx:
+                self.video_datas[self.playlist_name].pop(sub)
+                self.media_list[self.playlist_name].remove_index(sub)
                 dicre_idx += 1
+
+    def is_playing(self):
+        """
+        Return whether it is playing.
+        """
+        return self.player.is_playing()
 
     def inves_song_index(self) -> int:
         """
@@ -131,7 +147,7 @@ class MusicStreamer:
         """
         media = self.player.get_media_player()
         media_instance = media.get_media()
-        index = self.media_list.index_of_item(media_instance)
+        index = self.media_list[self.playlist_name].index_of_item(media_instance)
 
         return index
 
@@ -151,7 +167,41 @@ class MusicStreamer:
 
     def inves_current_list(self):
 
-        return self.my_videos
+        return self.video_datas[self.playlist_name]
+
+    def open_playlist(self, list_name, song_urls=[]):
+        self.playlist_name = list_name
+        self.media_list[self.playlist_name] = vlc.MediaList()
+        self.player.set_media_list(self.media_list[self.playlist_name])
+        self.video_datas[self.playlist_name] = []
+        for url in song_urls:
+            self.add_songs(url)
+
+        return 0
+
+    def save_playlist(self):
+        pass
+
+    def delete_playlist(self, playlist_name):
+        if playlist_name in self.video_datas.keys():
+            self.media_list.pop(playlist_name)
+            self.video_datas.pop(playlist_name)
+            self.player.set_media_list(self.media_list["None"])
+            if playlist_name == self.playlist_name:
+                self.playlist_name = "None"
+
+    def update_playlist(self):
+        pass
+
+    def rename_playlist(self, playlist_name):
+        media = self.media_list.pop(self.playlist_name)
+        data = self.video_datas.pop(self.playlist_name)
+        self.playlist_name = playlist_name
+        self.media_list[self.playlist_name] = media
+        self.video_datas[self.playlist_name] = data
+
+    def back_playlist(self):
+        self.playlist_name = "None"
 
 class PlayList():
     name: str

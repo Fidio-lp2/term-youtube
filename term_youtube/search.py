@@ -3,6 +3,7 @@
 Fetch information of movie in youtube.
 
 """
+import os
 import json
 from typing import Final
 from googleapiclient.discovery import build
@@ -10,8 +11,7 @@ from util import inves_app_path
 
 # youtube api token is read from other file ignored .gitignore
 tokenpath: str = inves_app_path() + "/.token.json"
-with open(tokenpath, "r") as tokenFile:
-    YOUTUBE_API_TOKEN: Final[str] = (json.load(tokenFile))["youtubeApiToken"]
+YOUTUBE_API_TOKEN: Final[str] = os.environ.get("GOOGLE_YOUTUBE_API_TOKEN")
 URL_HEADER: Final[str] = "https://www.youtube.com/watch?v="
 
 
