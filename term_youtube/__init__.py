@@ -161,6 +161,8 @@ def _real_main():
         # Display the current playlist
         elif input_val == "list":
             video_list = player.inves_current_list()
+            playlist_name = player.get_playlist_name()
+            print(yellow("# "+playlist_name+" #"))
             threshold(['#','#'], '=')
             idx: int = 0
             for video in video_list:
@@ -244,11 +246,14 @@ def _real_main():
         # Show the all playlist list
         elif input_val == "playlist":
             threshold(['#','#'], '-')
-            with open(PLAYLIST_PATH) as file:
-                playlist = json.load(file)
-                for title in playlist.keys():
-                    print(' ' + magenta(title) + ' - ' + green(playlist[title]['uptime']) +\
-                            ' ' )
+            playlist = get_playlist()
+            for title in playlist.keys():
+                print(' ' + magenta(title) + ' - ' + green(playlist[title]['uptime']) +\
+                        ' ', end='')
+                if playlist[title]['lock'] == 1:
+                    print(yellow("(lock)"))
+                else:
+                    print()
             threshold(['#','#'], '-')
 
         # Make the play list
