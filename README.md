@@ -132,4 +132,4 @@ and, create path to `bin/` directory in this repository.
 
 ## Author
 
-[this ikemen guy]("https://github.com/Fidio-lp2")
+[this ikemen guy](https://github.com/Fidio-lp2)
