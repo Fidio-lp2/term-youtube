@@ -1,6 +1,6 @@
 # term-youtube
 
-If you use this application, you can listen to YouTube music on **command line‼️*
+If you use this application, you can listen to YouTube music on ***command line‼️ ****
 
 ![icon](icon.png)
 
