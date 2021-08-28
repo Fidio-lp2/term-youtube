@@ -169,6 +169,9 @@ class MusicStreamer:
 
         return self.video_datas[self.playlist_name]
 
+    def inves_list(self, playlist_name):
+        return self.video_datas[playlist_name]
+
     def open_playlist(self, list_name, song_urls=[]):
         self.playlist_name = list_name
         self.media_list[self.playlist_name] = vlc.MediaList()

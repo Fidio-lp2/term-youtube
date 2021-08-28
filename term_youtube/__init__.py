@@ -159,24 +159,33 @@ def _real_main():
                 print(red("[ERROR] Subscript is unexpected."))
 
         # Display the current playlist
-        elif input_val == "list":
-            video_list = player.inves_current_list()
-            playlist_name = player.get_playlist_name()
-            print(yellow("# "+playlist_name+" #"))
-            threshold(['#','#'], '=')
-            idx: int = 0
-            for video in video_list:
-                if idx == player.inves_song_index() and player.is_playing():
-                    print(blue('♪'), end='')
+        elif input_val[:5].strip() == "list":
+            playlist_name = player.get_playlist_name() if input_val[5:].strip() == '' \
+                    else input_val[5:].strip()
+            playlist = get_playlist()
+            if playlist_name in playlist.keys() or playlist_name == "None":
+                print(yellow("# "+playlist_name+" #"))
+                threshold(['#','#'], '=')
+                idx: int = 0
+                if playlist_name == "None":
+                    video_list = player.inves_list(playlist_name)
                 else:
-                    print(magenta(str(idx)), end='')
-                print(green(" : " + video.title))
-                idx += 1
-            if len(video_list) == 0:
-                for i in range(int((terminal_size.columns -15) / 2)):
-                    print(' ', end='')
-                print(green("No songs added!"))
-            threshold(['#','#'], '=')
+                    video_list = playlist[playlist_name]['songs']
+                for video_name in video_list:
+                    if idx == player.inves_song_index() and player.is_playing():
+                        print(blue('♪'), end='')
+                    else:
+                        print(magenta(str(idx)), end='')
+                    print(green(" : " + video_name))
+                    idx += 1
+                if len(video_list) == 0:
+                    for i in range(int((terminal_size.columns -15) / 2)):
+                        print(' ', end='')
+                    print(green("No songs added!"))
+                threshold(['#','#'], '=')
+
+            else:
+                print(red("[ERROR] No matched name playlist."))
 
         # Show the data of songs of the current playlist
         elif input_val[:5].strip() == "data":

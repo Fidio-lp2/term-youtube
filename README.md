@@ -1,5 +1,7 @@
 # term-youtube
 
+![python](python-icon.svg) ![mac](for-mac-icon.svg)
+
 If you use this application, you can listen to YouTube music on **command line‼️**
 
 ![icon](icon.png)
@@ -46,9 +48,9 @@ Skip to the next song.
 
 Go back one to the previous song.
 
-`list`
+`list [name]`
 
-Show you songs of the current playlist.
+Show you songs of the [name] playlist. If you don't specified to [name] anyone, display the current playlist.
 
 `status`
 
