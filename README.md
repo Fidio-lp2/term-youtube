@@ -16,6 +16,7 @@ And, set the environment variable `GOOGLE_YOUTUBE_API_TOKEN` to your "YouTube Da
 module:
 1. `python-vlc`
 2. `python-pafy`
+4. `youtube-dl`
 3. `googleapiclient`
 
 ## Install
