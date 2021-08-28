@@ -247,13 +247,21 @@ def _real_main():
         elif input_val == "playlist":
             threshold(['#','#'], '-')
             playlist = get_playlist()
+            exist_playlist: bool = False
             for title in playlist.keys():
+                exist_playlist = True
                 print(' ' + magenta(title) + ' - ' + green(playlist[title]['uptime']) +\
                         ' ', end='')
                 if playlist[title]['lock'] == 1:
-                    print(yellow("(lock)"))
+                    print(yellow("(lock) "), end='')
+                else:
+                    pass
+                if player.get_playlist_name() == title:
+                    print(blue("(open)"))
                 else:
                     print()
+            if not exist_playlist:
+                dis_message("-*- No playlists! -*-")
             threshold(['#','#'], '-')
 
         # Make the play list
