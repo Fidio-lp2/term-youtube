@@ -18,6 +18,16 @@ module:
 2. `python-pafy`
 3. `googleapiclient`
 
+## Install
+
+To install with git,
+
+```
+git glone "https://github.com/Fidio-lp2/term-youtube"
+```
+
+and, create path to `bin/` directory in this repository.
+
 ## Usage
 
 You can enter the term-youtube's commandline by typing `term-youtube`.
@@ -121,16 +131,6 @@ Disables changing of the [name] playlist.
 `unlock [name]`
 
 Enable changing of the [name] playlist.
-
-## Install
-
-To install with git,
-
-```
-git glone "https://github.com/Fidio-lp2/term-youtube"
-```
-
-and, create path to `bin/` directory in this repository.
 
 ## Author
 
