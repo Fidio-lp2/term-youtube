@@ -44,6 +44,9 @@ class MusicStreamer:
         """
         self.player.play()
 
+    def play_at_index(self, index: int):
+        self.player.play_item_at_index(index)
+
     def stop(self):
         """
         Stop streaming.

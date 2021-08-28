@@ -123,9 +123,23 @@ def _real_main():
         # Stream the current play list from the begining
         elif input_val[:5].strip() == "play":
             if not input_val[6:] == '':
-                player.add_songs(fetch_video_url(input_val[5:]))
-            player.play()
-            dis_message("-*- Streaming is play! -*-")
+                if input_val[4:8].strip() == "at":
+                    try:
+                        player.play_at_index(int(input_val[8:]))
+                        player.play()
+                        dis_message("-*- Streaming is play! -*-")
+                    except ValueError:
+                        print(red("[ERROR] An unexpected value."))
+                    except IndexError:
+                        print(red("[ERROR] Not existing the index."))
+                else:
+                    player.add_songs(fetch_video_url(input_val[5:]))
+                    player.play()
+                    dis_message("-*- Streaming is play! -*-")
+            else:
+                player.play()
+                dis_message("-*- Streaming is play! -*-")
+
 
         # Stop the current song list
         elif input_val == "stop":
@@ -176,7 +190,7 @@ def _real_main():
                         print(blue('♪'), end='')
                     else:
                         print(magenta(str(idx)), end='')
-                    print(green(" : " + video_name))
+                    print(green(" : " + str(video_name)))
                     idx += 1
                 if len(video_list) == 0:
                     for i in range(int((terminal_size.columns -15) / 2)):
