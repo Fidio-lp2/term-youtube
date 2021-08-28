@@ -1,6 +1,6 @@
 # term-youtube
 
-![python](icons/python-icon.svg) ![mac](icons.for-mac-icon.svg) ![size](icons/term-youtube.svg)
+![python](icons/python-icon.svg) ![mac](icons/for-mac-icon.svg) ![size](icons/term-youtube.svg)
 
 If you use this application, you can listen to YouTube music on **command line‼️**
 
