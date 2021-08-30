@@ -208,6 +208,7 @@ class MusicStreamer:
 
     def back_playlist(self):
         self.playlist_name = "None"
+        self.player.set_media_list(self.media_list[self.playlist_name])
 
 class PlayList():
     name: str

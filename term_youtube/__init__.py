@@ -126,7 +126,6 @@ def _real_main():
                 if input_val[4:8].strip() == "at":
                     try:
                         player.play_at_index(int(input_val[8:]))
-                        player.play()
                         dis_message("-*- Streaming is play! -*-")
                     except ValueError:
                         print(red("[ERROR] An unexpected value."))
@@ -182,7 +181,7 @@ def _real_main():
                 threshold(['#','#'], '=')
                 idx: int = 0
                 if playlist_name == "None":
-                    video_list = player.inves_list(playlist_name)
+                    video_list = [song.title for song in player.inves_list(playlist_name)]
                 else:
                     video_list = playlist[playlist_name]['songs']
                 for video_name in video_list:
@@ -329,6 +328,7 @@ def _real_main():
 
         elif input_val == "back":
             player.back_playlist()
+            dis_message("-+- Back to None playlist! -*-")
 
         elif input_val[:5].strip() == "open":
             list_name: str = input_val[5:]
