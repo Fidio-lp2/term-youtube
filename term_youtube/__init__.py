@@ -182,7 +182,7 @@ def _real_main():
                 threshold(['#','#'], '=')
                 idx: int = 0
                 if playlist_name == "None":
-                    video_list = player.inves_list(playlist_name)
+                    video_list = [songs.title for songs in player.inves_list(playlist_name)]
                 else:
                     video_list = playlist[playlist_name]['songs']
                 for video_name in video_list:
