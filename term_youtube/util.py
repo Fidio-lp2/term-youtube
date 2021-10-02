@@ -6,7 +6,7 @@ Utility methods
 import shutil
 import random
 import os.path
-from color import *
+from .color import *
 
 
 def dis_message(message: str) -> None:
