@@ -284,8 +284,6 @@ def _real_main():
                         ' ', end='')
                 if playlist[title]['lock'] == 1:
                     print(yellow("(lock) "), end='')
-                else:
-                    pass
                 if player.get_playlist_name() == title:
                     print(blue("(open)"))
                 else:
