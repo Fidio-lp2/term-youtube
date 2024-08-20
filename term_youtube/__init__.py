@@ -27,6 +27,7 @@ terminal_size = shutil.get_terminal_size()
 # Const.
 PLAYLIST_PATH: Final[str] = inves_app_path() + "/playlist.json"
 PLAY_MESSAGE: Final[str] = "-*- Streaming is play! -*-"
+END_MESSAGE: Final[str] = "! -*-"
 
 
 def welcome():
@@ -308,7 +309,7 @@ def _real_main():
                     }
                     save_playlist(playlist)
                     player.save_playlist()
-                    dis_message("-*- Saved "+ list_name + "! -*-")
+                    dis_message("-*- Saved "+ list_name + END_MESSAGE)
                 else:
                     print(red("[ERROR] The playlist of name is existing."))
             else:
@@ -324,7 +325,7 @@ def _real_main():
                         playlist.pop(list_name)
                         save_playlist(playlist)
                         player.delete_playlist(list_name)
-                        dis_message("-*- Deleted " + list_name + "! -*-")
+                        dis_message("-*- Deleted " + list_name + END_MESSAGE)
                     else:
                         pass
                 else:
@@ -359,7 +360,7 @@ def _real_main():
                         playlist[list_name]['songs'] = song_list
                         save_playlist(playlist)
                         player.update_playlist()
-                        dis_message("-*- Updated "+ list_name + "! -*-")
+                        dis_message("-*- Updated "+ list_name + END_MESSAGE)
                 else:
                     dis_message("-*- " + list_name + " is locked! -*-")
             else:
@@ -378,7 +379,7 @@ def _real_main():
                         playlist[list_name] = data
                         save_playlist(playlist)
                         player.rename_playlist(list_name)
-                        dis_message("-*- Renamed " + current_name +" to "+ list_name + "! -*-")
+                        dis_message("-*- Renamed " + current_name +" to "+ list_name + END_MESSAGE)
                 else:
                     dis_message("-*- " + current_name + " is locked! -*-")
             else:
@@ -391,7 +392,7 @@ def _real_main():
             if list_name in playlist.keys():
                 playlist[list_name]['lock'] = 1
                 save_playlist(playlist)
-                dis_message("-*- Locked " + list_name + "! -*-")
+                dis_message("-*- Locked " + list_name + END_MESSAGE)
             else:
                 print(red("[ERROR] No matched name playlist."))
 
@@ -402,7 +403,7 @@ def _real_main():
             if list_name in playlist.keys():
                 playlist[list_name]['lock'] = 0
                 save_playlist(playlist)
-                dis_message("-*- Unlocked " + list_name + "! -*-")
+                dis_message("-*- Unlocked " + list_name + END_MESSAGE) 
             else:
                 print(red("[ERROR] No matched name playlist."))
 
