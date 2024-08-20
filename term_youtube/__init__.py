@@ -299,7 +299,7 @@ def _real_main():
             video_list = player.inves_current_list()
             song_list = [song.title for song in video_list]
             data = datetime.datetime.now()
-            if not list_name == "None":
+            if list_name != "None":
                 if not list_name in playlist.keys():
                     playlist[list_name] = {
                         "songs" : song_list,
