@@ -200,7 +200,7 @@ def _real_main():
                     print(green(" : " + str(video_name)))
                     idx += 1
                 if len(video_list) == 0:
-                    for i in range(int((terminal_size.columns -15) / 2)):
+                    for _ in range(int((terminal_size.columns -15) / 2)):
                         print(' ', end='')
                     print(green("No songs added!"))
                 threshold(['#','#'], '=')
