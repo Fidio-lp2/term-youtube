@@ -130,7 +130,7 @@ def _real_main():
 
         # Stream the current play list from the begining
         elif input_val[:5].strip() == "play":
-            if not input_val[6:] == '':
+            if input_val[6:] != '':
                 if input_val[4:8].strip() == "at":
                     try:
                         player.play_at_index(int(input_val[8:]))
