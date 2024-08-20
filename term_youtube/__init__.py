@@ -4,8 +4,13 @@ import sys
 import json
 import shutil
 import datetime
+
+from typing import Final
+
 # MAGIC SPELL
 import readline
+
+
 from .commandline import CommandLine
 from .search import (
     fetch_video_url,
@@ -19,7 +24,10 @@ from .version import *
 
 terminal_size = shutil.get_terminal_size()
 
-PLAYLIST_PATH = inves_app_path() + "/playlist.json"
+# Const.
+PLAYLIST_PATH: Final[str] = inves_app_path() + "/playlist.json"
+PLAY_MESSAGE: Final[str] = "-*- Streaming is play! -*-"
+
 
 def welcome():
     print(red('█')+bgred(white('▶︎'))+red('▉'), end='')
@@ -126,7 +134,7 @@ def _real_main():
                 if input_val[4:8].strip() == "at":
                     try:
                         player.play_at_index(int(input_val[8:]))
-                        dis_message("-*- Streaming is play! -*-")
+                        dis_message(PLAY_MESSAGE)
                     except ValueError:
                         print(red("[ERROR] An unexpected value."))
                     except IndexError:
@@ -134,10 +142,10 @@ def _real_main():
                 else:
                     player.add_songs(fetch_video_url(input_val[5:]))
                     player.play()
-                    dis_message("-*- Streaming is play! -*-")
+                    dis_message(PLAY_MESSAGE)
             else:
                 player.play()
-                dis_message("-*- Streaming is play! -*-")
+                dis_message(PLAY_MESSAGE)
 
 
         # Stop the current song list
